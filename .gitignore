@@ -1,0 +1,44 @@
+# Build output
+build/
+out/
+cmake-build-*/
+_deps/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+install_manifest.txt
+
+# Compiled artifacts
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.gch
+*.pch
+
+# Debug / profiling
+*.dSYM/
+*.gcda
+*.gcno
+*.gcov
+core
+vgcore.*
+perf.data*
+
+# Editors and OS
+.vscode/
+.idea/
+.cache/
+*.swp
+*~
+.DS_Store
