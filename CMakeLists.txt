@@ -16,20 +16,21 @@ endif()
 
 option(LIBCPTR_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
-add_executable(libc-ptr-fn src/main.cpp)
+add_executable(app src/main.cpp)
 
-target_include_directories(libc-ptr-fn PRIVATE
+target_include_directories(app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_compile_options(libc-ptr-fn PRIVATE
-    -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wnon-virtual-dtor)
+target_compile_options(app PRIVATE
+    -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wnon-virtual-dtor
+    -fno-stack-protector)
 if(LIBCPTR_WARNINGS_AS_ERRORS)
-    target_compile_options(libc-ptr-fn PRIVATE -Werror)
+    target_compile_options(app PRIVATE -Werror)
 endif()
 
 # Runtime symbol lookup (dlopen/dlsym) lives in libdl on older glibc and is
 # folded into libc on newer ones; CMAKE_DL_LIBS resolves to whichever applies.
-target_link_libraries(libc-ptr-fn PRIVATE ${CMAKE_DL_LIBS})
+target_link_libraries(app PRIVATE ${CMAKE_DL_LIBS})
 
 # Export dynamic symbols so the executable's own symbols are visible to dlsym.
-set_target_properties(libc-ptr-fn PROPERTIES ENABLE_EXPORTS ON)
+set_target_properties(app PROPERTIES ENABLE_EXPORTS ON)
